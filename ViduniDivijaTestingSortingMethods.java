@@ -1,6 +1,7 @@
 package LA2Q1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ViduniDivijaTestingSortingMethods {
     public static void header(){
@@ -12,7 +13,7 @@ public class ViduniDivijaTestingSortingMethods {
     }
     public static void footer(){
         System.out.println("***************************************\n" +
-                "This is timeOfDay on theDate.\n" +
+                "This is " + java.time.LocalTime.now() + " on the " + java.time.LocalDate.now() +"\n"+
                 "Completion of Lab Assignment 2 is successful!\n" +
                 "Good bye! Divija Bhargava and Viduni Weihena Epa \n" +
                 "***************************************");
@@ -85,7 +86,7 @@ public class ViduniDivijaTestingSortingMethods {
         }
 //        Copy the content of the first array to the backup array (You can use
 //                System.arraycopy() method).
-        System.arraycopy(arr, 0, backupArr, 1, 50000);
+        System.arraycopy(arr, 0, backupArr, 1, 50000-1);
 //        Convert the first array to an ArrayList and then sort it using Collections’ sort
 //        method. Check the time and print it on the screen (see the sample output).
         
@@ -101,3 +102,4 @@ public class ViduniDivijaTestingSortingMethods {
 
     }
 }
+
