@@ -1,5 +1,7 @@
 package LA2Q1;
 
+import java.util.ArrayList;
+
 public class ViduniDivijaTestingSortingMethods {
     public static void header(){
         System.out.println("*******************************************************\n" +
@@ -20,10 +22,37 @@ public class ViduniDivijaTestingSortingMethods {
     }
 
     public static < T extends Comparable <? super T >> long bubbleSort(T[] a){
+        int i, j;
+        T temp;
+        boolean again = true;
+        for (i = 0; i < (a.length - 1 ); i++) {
+
+            for (j = 0; j < a.length-1 && (again = true); j++) {
+                again = false;
+                if (a[j].equals(a[j + 1]));
+                {
+                    temp = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = temp;
+                    again = true;
+                }
+            }
+        }
         return 0;
     }
 
     public static < T extends Comparable <? super T >> long insertionSort(T[] a){
+        for (int i = 0; i <a.length; i++) {
+
+            T key = a[i];
+
+            for (int j = i-1; j>=0 && a[j].compareTo(key)<0; j--) {
+                a[j+1] = a[j];
+                a[j] = key;
+            }
+
+
+        }
         return 0;
     }
 
@@ -46,18 +75,20 @@ public class ViduniDivijaTestingSortingMethods {
 //        Call your header method.
         header();
 //        Declare an Integer type array of a variable size sz which you can present to 50000.
-
+        Integer [] arr = new Integer [50000];
 //        Create a backup Integer type array with the same size.
-
+        Integer [] backupArr = new Integer [50000];
 //        Populate the first array with random values from 1 to sz, by using Math.random()
 //        method.
-
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int)(Math.random());
+        }
 //        Copy the content of the first array to the backup array (You can use
 //                System.arraycopy() method).
-
+        System.arraycopy(arr, 0, backupArr, 1, 50000);
 //        Convert the first array to an ArrayList and then sort it using Collections’ sort
 //        method. Check the time and print it on the screen (see the sample output).
-
+        
 //        Now swap the first array with the backup array (you need to do this to make sure
 //        that you are sorting the same unsorted array every time)
 
