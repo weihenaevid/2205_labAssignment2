@@ -2,6 +2,8 @@ package LA2Q1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class ViduniDivijaTestingSortingMethods {
     public static void header(){
@@ -76,25 +78,26 @@ public class ViduniDivijaTestingSortingMethods {
 //        Call your header method.
         header();
 //        Declare an Integer type array of a variable size sz which you can present to 50000.
-        Integer [] arr = new Integer [50000];
+        Integer [] firstArr = new Integer [50000];
 //        Create a backup Integer type array with the same size.
         Integer [] backupArr = new Integer [50000];
 //        Populate the first array with random values from 1 to sz, by using Math.random()
 //        method.
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int)(Math.random());
+        for (int i = 0; i < firstArr.length; i++) {
+            firstArr[i] = (int)(Math.random());
         }
 //        Copy the content of the first array to the backup array (You can use
 //                System.arraycopy() method).
-        System.arraycopy(arr, 0, backupArr, 1, 50000-1);
+        System.arraycopy(firstArr, 0, backupArr, 1, 50000-1);
 //        Convert the first array to an ArrayList and then sort it using Collections’ sort
 //        method. Check the time and print it on the screen (see the sample output).
-        
+        List<Integer> firstList = new ArrayList<Integer>(Arrays.asList(firstArr));
+        Collections.sort(firstList);
 //        Now swap the first array with the backup array (you need to do this to make sure
 //        that you are sorting the same unsorted array every time)
-
+        
 //        Call the selectionSort() method by passing the first array, and print the time.
-
+        selectionSort(firstArr);
 //        Repeat steps vi) and vii) for each call, and print the time (see the sample output)
 
 //        Call your footer method.
@@ -102,4 +105,5 @@ public class ViduniDivijaTestingSortingMethods {
 
     }
 }
+
 
