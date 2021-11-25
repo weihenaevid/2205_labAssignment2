@@ -1,9 +1,6 @@
 package LA2Q1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ViduniDivijaTestingSortingMethods {
     public static void header(){
@@ -21,19 +18,19 @@ public class ViduniDivijaTestingSortingMethods {
                 "***************************************");
     }
 
-    public static <T extends Comparable <? super T>>long selectionSort (T [] a){
-        
-        for(int i = 0; i<a.length-1;i++){
-            a[i].equals(a[a.length-1]);
-            for(int j = i+1; j<a.length-1; j++){
-                if(a[j].compareTo(a[j+1]) < 0){
-
-                }
-            }
-
-        }
-        return 0;
-    }
+//    public static <T extends Comparable <? super T>>long selectionSort (T [] a){
+//
+//        for(int i = 0; i<a.length-1;i++){
+//            a[i].equals(a[a.length-1]);
+//            for(int j = i+1; j<a.length-1; j++){
+//                if(a[j].compareTo(a[j+1]) < 0){
+//
+//                }
+//            }
+//
+//        }
+//        return 0;
+//    }
 
     public static < T extends Comparable <? super T >> long bubbleSort(T[] a){
         int i, j;
@@ -75,8 +72,38 @@ public class ViduniDivijaTestingSortingMethods {
     }
     //[you can tweak the recursive merge-sort code given in the Unit 4 – companion document]
 
-    public static <T extends Comparable<? super T>> long quickSort(T[] s, int a, int b){
+    public static <T extends Comparable<? super T>> long quickSort(T[] s, Comparator<T> comp, int a, int b){
+        // in-place partitioning using quicksort
         int mid = (a + b)/2;
+        if (a>=b) return mid;
+        int left = a;
+        int right = b-1;
+        T pivot = s[b];
+        T temp;
+
+        while(left<=right){
+            // scan until reaching value equal to or greater than pivot
+            while(left<=right && comp.compare(s[left], pivot)<0)
+                left ++;
+            // scan until reaching value equal to or less than pivot
+            while(left<=right && comp.compare(s[left], pivot)>0)
+                right --;
+            //
+           if(left <= right){
+               // swap and shrink range
+               temp = s[left];
+               s[left] = s[right];
+               s[right] = temp;
+               left++; right--;
+           }
+        }
+        // put pivot in its final place
+        temp = s[left];
+        s[left] = s[b];
+        s[b] = temp;
+        // recursive calls
+        quickSort(s, comp, a, left-1);
+        quickSort(s, comp, left+1, b);
 
         return 0;
     }//[you can implement the in-place quick-sort algorithm given in the lecture handout]
@@ -89,28 +116,46 @@ public class ViduniDivijaTestingSortingMethods {
     public static void main(String[] args) {
         //Call your header method.
         header();
+
         //Declare an Integer type array of a variable size sz which you can present to 50000.
-        Integer [] firstArr = new Integer [50000];
+        Integer [] firstArr = new Integer [5];
+
         //Create a backup Integer type array with the same size.
-        Integer [] backupArr = new Integer [50000];
+        Integer [] backupArr = new Integer [5];
+
         //Populate the first array with random values from 1 to sz, by using Math.random() method.
         for (int i = 0; i < firstArr.length; i++) {
-            firstArr[i] = (int)(Math.random());
+            int rand = (int)Math.random();
+            for (int j = 0; j < firstArr.length; j++) {
+                firstArr[i] = rand;
+            }
+            System.out.println(firstArr[i] + " confusion");
+        }
+        // printing it out for fun
+        for (int i = 0; i < firstArr.length; i++) {
+            System.out.println(firstArr[i] + " delete this later ");
         }
         //Copy the content of the first array to the backup array (You can use System.arraycopy() method).
-        System.arraycopy(firstArr, 0, backupArr, 1, 50000-1);
+        System.arraycopy(firstArr, 0, backupArr, 1, 5-1);
+
+
         //Convert the first array to an ArrayList and then sort it using Collections’ sort method. Check the time and print it on the screen (see the sample output).
         List<Integer> firstList = new ArrayList<Integer>(Arrays.asList(firstArr));
         Collections.sort(firstList);
+
         //Now swap the first array with the backup array (you need to do this to make sure that you are sorting the same unsorted array every time)
+        Integer [] temp  = firstArr;
+        firstArr = backupArr;
+        backupArr = temp;
 
         //Call the selectionSort() method by passing the first array, and print the time.
-        selectionSort(firstArr);
+       // selectionSort(firstArr);
+
         //Repeat steps vi) and vii) for each call, and print the time (see the sample output)
+
 
         //Call your footer method.
         footer();
 
     }
 }
-
