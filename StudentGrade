@@ -1,0 +1,61 @@
+package LA2Q2;
+
+public class StudentGrade implements Comparable<StudentGrade>{
+    @Override
+    public int compareTo(StudentGrade o) {
+        return 0;
+    }
+
+    StudentGrade firstName;
+    StudentGrade lastName;
+    StudentGrade grade;
+
+    public StudentGrade() {
+    }
+    // a constructor with all parameters
+    public StudentGrade(StudentGrade firstName, StudentGrade lastName, StudentGrade grade) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.grade = grade;
+    }
+
+//    All the Getter and setter methods for all three data fields. Even if you do not need to use
+//    all, it is a good practice to have all available
+    public void setFirstName(StudentGrade firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(StudentGrade lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setGrade(StudentGrade grade) {
+        this.grade = grade;
+    }
+    public StudentGrade getFirstName() {
+        return firstName;
+    }
+
+    public StudentGrade getLastName() {
+        return lastName;
+    }
+
+    public StudentGrade getGrade() {
+        return grade;
+    }
+
+
+    // Overridden toString() method so that it can print the list as shown in the output for
+//    unsorted list, and sorted list based on the grades. [The other two need to be printed
+//    separately.]
+
+    @Override
+    public String toString() {
+        return " ";
+    }
+
+
+//   Implement the CompareTo() method to compare the grades
+
+
+}
