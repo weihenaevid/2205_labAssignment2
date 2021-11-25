@@ -6,52 +6,53 @@ public class StudentGrade implements Comparable<StudentGrade>{
         return 0;
     }
 
-    StudentGrade firstName;
-    StudentGrade lastName;
-    StudentGrade grade;
+    //three private data fields
+    private StudentGrade firstName;
+    private StudentGrade lastName;
+    private StudentGrade grade;
 
-    public StudentGrade() {
-    }
-    // a constructor with all parameters
+    //a constructor with no parameters(empty body)
+    public StudentGrade() {}
+
+    //a constructor with all parameters
     public StudentGrade(StudentGrade firstName, StudentGrade lastName, StudentGrade grade) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.grade = grade;
     }
 
-//    All the Getter and setter methods for all three data fields. Even if you do not need to use
-//    all, it is a good practice to have all available
+    //*** DELETE: all the Getter and setter methods for all three data fields. Even if you do not need to use all, it is a good practice to have all available
+    //all the setter methods
     public void setFirstName(StudentGrade firstName) {
         this.firstName = firstName;
     }
-
     public void setLastName(StudentGrade lastName) {
         this.lastName = lastName;
     }
-
     public void setGrade(StudentGrade grade) {
         this.grade = grade;
     }
+
+    //all the getter methods
     public StudentGrade getFirstName() {
         return firstName;
     }
-
     public StudentGrade getLastName() {
         return lastName;
     }
-
     public StudentGrade getGrade() {
         return grade;
     }
 
-
     // Overridden toString() method so that it can print the list as shown in the output for
 //    unsorted list, and sorted list based on the grades. [The other two need to be printed
 //    separately.]
-
+    //Overridden toString to print list (as shown in output)
     @Override
     public String toString() {
-        return " ";
+        System.out.println("The Unsorted Array ..............");
+
+        return String.format("%20s : %5s",(getFirstName()+" " + getLastName()), getGrade());
     }
 
 
