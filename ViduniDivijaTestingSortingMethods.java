@@ -33,6 +33,7 @@ public class ViduniDivijaTestingSortingMethods {
 //    }
 
     public static < T extends Comparable <? super T >> long bubbleSort(T[] a){
+        long start = System.nanoTime();
         int i, j;
         T temp;
         boolean again = true;
@@ -49,7 +50,8 @@ public class ViduniDivijaTestingSortingMethods {
                 }
             }
         }
-        return 0;
+        long totalTime = (System.nanoTime() - start)/1000000;
+        return totalTime;
     }
 
     public static < T extends Comparable <? super T >> long insertionSort(T[] a){
@@ -116,44 +118,42 @@ public class ViduniDivijaTestingSortingMethods {
     public static void main(String[] args) {
         //Call your header method.
         header();
-
+        int arrayLastIndexNum = 5;
         //Declare an Integer type array of a variable size sz which you can present to 50000.
-        Integer [] firstArr = new Integer [5];
+        Integer [] firstArr = new Integer [arrayLastIndexNum];
 
         //Create a backup Integer type array with the same size.
-        Integer [] backupArr = new Integer [5];
+        Integer [] backupArr = new Integer [arrayLastIndexNum];
 
         //Populate the first array with random values from 1 to sz, by using Math.random() method.
-        for (int i = 0; i < firstArr.length; i++) {
-            int rand = (int)Math.random();
-            for (int j = 0; j < firstArr.length; j++) {
-                firstArr[i] = rand;
-            }
-            System.out.println(firstArr[i] + " confusion");
+        for (int i = 0; i < firstArr.length-1; i++) {
+            firstArr[i] = (int) (1 + Math.random() * arrayLastIndexNum);
+            //System.out.println(firstArr[i] + " confusion");
         }
         // printing it out for fun
         for (int i = 0; i < firstArr.length; i++) {
-            System.out.println(firstArr[i] + " delete this later ");
+            //System.out.println(firstArr[i] + " delete this later ");
         }
         //Copy the content of the first array to the backup array (You can use System.arraycopy() method).
-        System.arraycopy(firstArr, 0, backupArr, 1, 5-1);
+        System.arraycopy(firstArr, 0, backupArr, 1, arrayLastIndexNum-1);
 
 
         //Convert the first array to an ArrayList and then sort it using Collections’ sort method. Check the time and print it on the screen (see the sample output).
-        List<Integer> firstList = new ArrayList<Integer>(Arrays.asList(firstArr));
-        Collections.sort(firstList);
+       // List<Integer> firstList = new ArrayList<Integer>(Arrays.asList(firstArr));
+       // Collections.sort(firstList);
 
         //Now swap the first array with the backup array (you need to do this to make sure that you are sorting the same unsorted array every time)
         Integer [] temp  = firstArr;
         firstArr = backupArr;
         backupArr = temp;
-
+        
+        Integer arrrrrrrrr [] = {4, 2, 6, 3, 2};
+        System.out.println(bubbleSort(arrrrrrrrr));
         //Call the selectionSort() method by passing the first array, and print the time.
        // selectionSort(firstArr);
 
         //Repeat steps vi) and vii) for each call, and print the time (see the sample output)
-
-
+        System.out.println(bubbleSort(backupArr));
         //Call your footer method.
         footer();
 
