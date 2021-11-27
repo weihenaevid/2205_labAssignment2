@@ -135,13 +135,6 @@ public class ViduniDivijaTestingSortingMethods {
         return totalTime;
     }//[you can implement the in-place quick-sort algorithm given in the lecture handout]
 
-    public static long bucketSort(Integer[] a, int first, int last, int maxDigits) {
-        long startBuck = System.nanoTime();
-
-        long totalTime = (System.nanoTime() - startBuck)/1000000;
-        return totalTime;
-    }
-
     // driver method
     public static void main(String[] args) {
         //Call your header method.
