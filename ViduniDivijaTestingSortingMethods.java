@@ -35,7 +35,7 @@ public class ViduniDivijaTestingSortingMethods {
 
     public static < T extends Comparable <? super T >> long bubbleSort(T[] a){
         long startBubble = System.nanoTime();
-        int i, j;
+        int i,j;
         T temp;
         boolean again = true;
         for (i = 0; i < (a.length - 1 ); i++) {
@@ -171,10 +171,12 @@ public class ViduniDivijaTestingSortingMethods {
 
         System.out.println("Testing execution time of different sorting algorithms for sorting 50000 random numbers:");
         //Call the selectionSort() method by passing the first array, and print the time.
-        System.out.println(selectionSort(firstArr));
-
-        //Repeat steps vi) and vii) for each call, and print the time (see the sample output)
-        System.out.println(bubbleSort(backupArr));
+       // System.out.println("Collections' sort time is: " );
+       // System.out.println("My Selection-sort time is: " + selectionSort(firstArr));
+        System.out.println("My Bubble-Sort sort time is: " + bubbleSort(firstArr));
+       // System.out.println("My Insertion-sort time is: " + insertionSort(firstArr));
+       // System.out.println("My Merge-sort time is: " + mergeSort(firstArr, Integer::compareTo));
+       // System.out.println("My Quick-sort time is: " + quickSort(firstArr, Integer::compareTo, 0, backupArr.length-1));
         //Call your footer method.
         footer();
 
