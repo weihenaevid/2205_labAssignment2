@@ -7,7 +7,8 @@ public class ViduniDivijaTestingSortingMethods {
         System.out.println("*******************************************************\n" +
                 "Names: Divija Bhargava and Viduni Weihena Epa.\n" +
                 "Student Numbers: 251159008 and 251152022\n" +
-                "Goal of this project: To write all the sorting methods we have learned and test their execution time for an Integer type dataset.\n" +
+                "Goal of this project: To write all the sorting methods we have learned and " +
+                "test their execution time for an Integer type dataset.\n" +
                 "*******************************************************");
     }
     public static void footer(){
@@ -20,13 +21,18 @@ public class ViduniDivijaTestingSortingMethods {
 
     public static <T extends Comparable <? super T>>long selectionSort (T [] a){
         long startSelect = System.nanoTime();
-        for(int i = 0; i<a.length-1;i++){
-            a[i].equals(a[a.length-1]);
-            for(int j = i+1; j<a.length-1; j++){
-                if(a[j].compareTo(a[j+1]) < 0){
-
+        for(int i = 1; i < a.length-1;i++){
+            T min = a[i];
+//            i++;
+           // a[i].equals(a[a.length-1]);
+            for(int j = i+1; j < a.length; j++){
+                if(a[j].compareTo(min)>0){
+                    T temp = a[j];
+                    a[j] = a[i];
+                    a[i] = temp;
                 }
             }
+
 
         }
         long totalTime = (System.nanoTime() - startSelect)/1000000;
@@ -35,39 +41,39 @@ public class ViduniDivijaTestingSortingMethods {
 
     public static < T extends Comparable <? super T >> long bubbleSort(T[] a){
         long startBubble = System.nanoTime();
-        int i,j;
-        T temp;
         boolean again = true;
-        for (i = 0; i < (a.length - 1 ); i++) {
+        for (int i = 1; i < (a.length); i++) {
+            again = false;
+            for (int j = 0; j < a.length-1 && (again = true); j++) {
 
-            for (j = 0; j < a.length-1 && (again = true); j++) {
-                again = false;
-                if (a[j].equals(a[j + 1]));
+                if (a[j].compareTo(a[j+1])>0)
                 {
-                    temp = a[j];
+                    T temp = a[j];
                     a[j] = a[j+1];
                     a[j+1] = temp;
                     again = true;
                 }
             }
         }
-        long totalTime = (System.nanoTime() - startBubble);
+        long totalTime = (System.nanoTime() - startBubble)/1000000;
         return totalTime;
     }
 
     public static < T extends Comparable <? super T >> long insertionSort(T[] a){
         long startInsert = System.nanoTime();
-        for (int i = 0; i <a.length; i++) {
-
+        for (int i = 1; i <a.length-1; i++) {
+//            System.out.println(a.length);
             T key = a[i];
-
-            for (int j = i-1; j>=0 && a[j].compareTo(key)<0; j--) {
+//            System.out.println(a[i]);
+//            System.out.println(a[i+1]);
+//            System.out.println(key);
+            for (int j = i-1; (j >= 0) && (a[j].compareTo(key)<0); j--) {
                 a[j+1] = a[j];
                 a[j] = key;
             }
 
-
         }
+
         long totalTime = (System.nanoTime() - startInsert)/1000000;
         return totalTime;
     }
@@ -97,39 +103,40 @@ public class ViduniDivijaTestingSortingMethods {
     }
     //[you can tweak the recursive merge-sort code given in the Unit 4 – companion document]
 
-    public static <T extends Comparable<? super T>> long quickSort(T[] s, Comparator<T> comp, int a, int b){
+        public static <T extends Comparable<? super T>> long quickSort(T[] s, int a, int b){
         long startQuick = System.nanoTime();
         // in-place partitioning using quicksort
-        int mid = (a + b)/2;
-        if (a>=b) return mid;
+        if (a>=b) {
+            return System.nanoTime()-startQuick;
+        }
         int left = a;
         int right = b-1;
-        T pivot = s[b];
+        T pivot = s[(a+b)/2];
         T temp;
 
-        while(left<=right){
-            // scan until reaching value equal to or greater than pivot
-            while(left<=right && comp.compare(s[left], pivot)<0)
-                left ++;
-            // scan until reaching value equal to or less than pivot
-            while(left<=right && comp.compare(s[left], pivot)>0)
-                right --;
-            //
-            if(left <= right){
-                // swap and shrink range
-                temp = s[left];
-                s[left] = s[right];
-                s[right] = temp;
-                left++; right--;
+        while (left<=right){
+            while(left<=right && s[left].compareTo(pivot)<0){
+                left++;
+            }
+            while(left<=right && s[right].compareTo(pivot)>0){
+                right--;
+            }
+            if (left<=right){
+                if(left!=right){
+                    temp=s[left];
+                    s[left] = s[right];
+                    s[right] = temp;
+                }
+                left++;
+                right--;
+
             }
         }
-        // put pivot in its final place
         temp = s[left];
         s[left] = s[b];
         s[b] = temp;
-        // recursive calls
-        quickSort(s, comp, a, left-1);
-        quickSort(s, comp, left+1, b);
+        quickSort(s,a,left-1);
+        quickSort(s,left+1,b);
 
         long totalTime = (System.nanoTime() - startQuick)/1000000;
         return totalTime;
@@ -139,7 +146,7 @@ public class ViduniDivijaTestingSortingMethods {
     public static void main(String[] args) {
         //Call your header method.
         header();
-        int arrayLastIndexNum = 5;
+        int arrayLastIndexNum = 5000;
         //Declare an Integer type array of a variable size sz which you can present to 50000.
         Integer [] firstArr = new Integer [arrayLastIndexNum];
 
@@ -147,22 +154,23 @@ public class ViduniDivijaTestingSortingMethods {
         Integer [] backupArr = new Integer [arrayLastIndexNum];
 
         //Populate the first array with random values from 1 to sz, by using Math.random() method.
-        for (int i = 0; i < firstArr.length-1; i++) {
-            firstArr[i] = (int) (1 + Math.random() * arrayLastIndexNum);
-            //System.out.println(firstArr[i] + " confusion");
+        for (int i = 0; i < backupArr.length; i++) {
+            firstArr[i] = (int) (Math.random() * backupArr.length+1);
         }
         // printing it out for fun
-        for (int i = 0; i < firstArr.length; i++) {
-            //System.out.println(firstArr[i] + " delete this later ");
-        }
+//        for (int i = 0; i < firstArr.length; i++) {
+//            System.out.println(firstArr[i] + " delete this later ");
+//        }
         //Copy the content of the first array to the backup array (You can use System.arraycopy() method).
         System.arraycopy(firstArr, 0, backupArr, 1, arrayLastIndexNum-1);
 
 
         //Convert the first array to an ArrayList and then sort it using Collections’ sort method. Check the time and print it on the screen (see the sample output).
-//        List<Integer> firstList = new ArrayList<Integer>(Arrays.asList(firstArr));
-//        Collections.sort(firstList);
-//        System.out.println(firstList);
+        List<Integer> firstList = new ArrayList<Integer>(Arrays.asList(firstArr));
+        long startCollections = System.nanoTime();
+        Collections.sort(firstList);
+        long totalCollectTime = (System.nanoTime() - startCollections)/1000000;
+
 
         //Now swap the first array with the backup array (you need to do this to make sure that you are sorting the same unsorted array every time)
         Integer [] temp  = firstArr;
@@ -171,12 +179,12 @@ public class ViduniDivijaTestingSortingMethods {
 
         System.out.println("Testing execution time of different sorting algorithms for sorting 50000 random numbers:");
         //Call the selectionSort() method by passing the first array, and print the time.
-       // System.out.println("Collections' sort time is: " );
-       // System.out.println("My Selection-sort time is: " + selectionSort(firstArr));
-        System.out.println("My Bubble-Sort sort time is: " + bubbleSort(firstArr));
-       // System.out.println("My Insertion-sort time is: " + insertionSort(firstArr));
-       // System.out.println("My Merge-sort time is: " + mergeSort(firstArr, Integer::compareTo));
-       // System.out.println("My Quick-sort time is: " + quickSort(firstArr, Integer::compareTo, 0, backupArr.length-1));
+       System.out.println("Collections' sort time is: " + totalCollectTime + " milliseconds");
+       System.out.println("My Selection-sort time is: " + selectionSort(backupArr)+ " milliseconds");
+       System.out.println("My Bubble-Sort sort time is: " + bubbleSort(backupArr)+ " milliseconds");
+       System.out.println("My Insertion-sort time is: " + insertionSort(backupArr)+ " milliseconds");
+       System.out.println("My Merge-sort time is: " + mergeSort(backupArr, Integer::compareTo)+ " milliseconds");
+       System.out.println("My Quick-sort time is: " + quickSort(backupArr, 0, backupArr.length-1)+ " milliseconds");
         //Call your footer method.
         footer();
 
