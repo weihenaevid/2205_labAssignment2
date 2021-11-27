@@ -7,16 +7,15 @@ public class ViduniDivijaTestingSortingMethods {
         System.out.println("*******************************************************\n" +
                 "Names: Divija Bhargava and Viduni Weihena Epa.\n" +
                 "Student Numbers: 251159008 and 251152022\n" +
-                "Goal of this project: To write all the sorting methods we have learned and " +
-                "test their execution time for an Integer type dataset.\n" +
+                "Goal of this project: To write all the sorting methods we have learned and test their execution time for an Integer type dataset.\n" +
                 "*******************************************************");
     }
     public static void footer(){
-        System.out.println("***************************************\n" +
+        System.out.println("*******************************************************\n" +
                 "This is " + java.time.LocalTime.now() + " on the " + java.time.LocalDate.now() +"\n"+
                 "Completion of Lab Assignment 2 is successful!\n" +
                 "Good bye! Divija Bhargava and Viduni Weihena Epa \n" +
-                "***************************************");
+                "*******************************************************");
     }
 
     public static <T extends Comparable <? super T>>long selectionSort (T [] a){
@@ -146,7 +145,7 @@ public class ViduniDivijaTestingSortingMethods {
     public static void main(String[] args) {
         //Call your header method.
         header();
-        int arrayLastIndexNum = 5000;
+        int arrayLastIndexNum = 50000;
         //Declare an Integer type array of a variable size sz which you can present to 50000.
         Integer [] firstArr = new Integer [arrayLastIndexNum];
 
