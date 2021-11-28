@@ -1,5 +1,7 @@
 package LA2Q1;
 
+import LA2Q2.StudentGrade;
+
 import java.util.*;
 
 public class ViduniDivijaTestingSortingMethods {
@@ -7,7 +9,8 @@ public class ViduniDivijaTestingSortingMethods {
         System.out.println("*******************************************************\n" +
                 "Names: Divija Bhargava and Viduni Weihena Epa.\n" +
                 "Student Numbers: 251159008 and 251152022\n" +
-                "Goal of this project: To write all the sorting methods we have learned and test their execution time for an Integer type dataset.\n" +
+                "Goal of this project: To write all the sorting methods we have learned and " +
+                "test their execution time for an Integer type dataset.\n" +
                 "*******************************************************");
     }
     public static void footer(){
@@ -22,8 +25,6 @@ public class ViduniDivijaTestingSortingMethods {
         long startSelect = System.nanoTime();
         for(int i = 1; i < a.length-1;i++){
             T min = a[i];
-//            i++;
-           // a[i].equals(a[a.length-1]);
             for(int j = i+1; j < a.length; j++){
                 if(a[j].compareTo(min)>0){
                     T temp = a[j];
@@ -31,8 +32,6 @@ public class ViduniDivijaTestingSortingMethods {
                     a[i] = temp;
                 }
             }
-
-
         }
         long totalTime = (System.nanoTime() - startSelect)/1000000;
         return totalTime;
@@ -61,11 +60,7 @@ public class ViduniDivijaTestingSortingMethods {
     public static < T extends Comparable <? super T >> long insertionSort(T[] a){
         long startInsert = System.nanoTime();
         for (int i = 1; i <a.length-1; i++) {
-//            System.out.println(a.length);
             T key = a[i];
-//            System.out.println(a[i]);
-//            System.out.println(a[i+1]);
-//            System.out.println(key);
             for (int j = i-1; (j >= 0) && (a[j].compareTo(key)<0); j--) {
                 a[j+1] = a[j];
                 a[j] = key;
@@ -110,7 +105,7 @@ public class ViduniDivijaTestingSortingMethods {
         }
         int left = a;
         int right = b-1;
-        T pivot = s[(a+b)/2];
+        T pivot = s[(a+b)/2];   // pick middle number as our pivot
         T temp;
 
         while (left<=right){
@@ -156,13 +151,9 @@ public class ViduniDivijaTestingSortingMethods {
         for (int i = 0; i < backupArr.length; i++) {
             firstArr[i] = (int) (Math.random() * backupArr.length+1);
         }
-        // printing it out for fun
-//        for (int i = 0; i < firstArr.length; i++) {
-//            System.out.println(firstArr[i] + " delete this later ");
-//        }
+
         //Copy the content of the first array to the backup array (You can use System.arraycopy() method).
         System.arraycopy(firstArr, 0, backupArr, 1, arrayLastIndexNum-1);
-
 
         //Convert the first array to an ArrayList and then sort it using Collections’ sort method. Check the time and print it on the screen (see the sample output).
         List<Integer> firstList = new ArrayList<Integer>(Arrays.asList(firstArr));
