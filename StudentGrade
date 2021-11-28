@@ -1,21 +1,16 @@
 package LA2Q2;
 
 public class StudentGrade implements Comparable<StudentGrade>{
-    @Override
-    public int compareTo(StudentGrade o) {
-        return 0;
-    }
-
     //three private data fields
-    private StudentGrade firstName;
-    private StudentGrade lastName;
-    private StudentGrade grade;
+    private String firstName;
+    private String lastName;
+    private int grade;
 
     //a constructor with no parameters(empty body)
     public StudentGrade() {}
 
     //a constructor with all parameters
-    public StudentGrade(StudentGrade firstName, StudentGrade lastName, StudentGrade grade) {
+    public StudentGrade(String firstName, String lastName, int grade) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.grade = grade;
@@ -23,24 +18,24 @@ public class StudentGrade implements Comparable<StudentGrade>{
 
     //*** DELETE: all the Getter and setter methods for all three data fields. Even if you do not need to use all, it is a good practice to have all available
     //all the setter methods
-    public void setFirstName(StudentGrade firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    public void setLastName(StudentGrade lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public void setGrade(StudentGrade grade) {
+    public void setGrade(int grade) {
         this.grade = grade;
     }
 
     //all the getter methods
-    public StudentGrade getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
-    public StudentGrade getLastName() {
+    public String getLastName() {
         return lastName;
     }
-    public StudentGrade getGrade() {
+    public int getGrade() {
         return grade;
     }
 
@@ -50,13 +45,15 @@ public class StudentGrade implements Comparable<StudentGrade>{
     //Overridden toString to print list (as shown in output)
     @Override
     public String toString() {
-        System.out.println("The Unsorted Array ..............");
-
-        return String.format("%20s : %5s",(getFirstName()+" " + getLastName()), getGrade());
+        return String.format("%20s : %5s\n",(getFirstName()+" " + getLastName()), getGrade());
     }
 
 
-//   Implement the CompareTo() method to compare the grades
+    //   Implement the CompareTo() method to compare the grades
+    @Override
+    public int compareTo(StudentGrade o) {
+        return 0;
+}
 
 
 }
