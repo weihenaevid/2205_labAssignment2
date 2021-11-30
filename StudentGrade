@@ -16,7 +16,7 @@ public class StudentGrade implements Comparable<StudentGrade>{
         this.grade = grade;
     }
 
-    //*** DELETE: all the Getter and setter methods for all three data fields. Even if you do not need to use all, it is a good practice to have all available
+    //all the Getter and setter methods for all three data fields. Even if you do not need to use all, it is a good practice to have all available
     //all the setter methods
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -40,20 +40,18 @@ public class StudentGrade implements Comparable<StudentGrade>{
     }
 
     // Overridden toString() method so that it can print the list as shown in the output for
-//    unsorted list, and sorted list based on the grades. [The other two need to be printed
-//    separately.]
+    //unsorted list, and sorted list based on the grades. [The other two need to be printed
+    //separately.]
+
     //Overridden toString to print list (as shown in output)
     @Override
     public String toString() {
         return String.format("%20s : %5s",(getFirstName()+" " + getLastName()), getGrade());
     }
 
-
     //   Implement the CompareTo() method to compare the grades
     @Override
     public int compareTo(StudentGrade o) {
         return this.grade - o.grade;
-}
-
-
+    }
 }
