@@ -1,14 +1,12 @@
 package LA2Q2;
 
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Vector;
 
 public class ViduniDivija_SortNameAndGrade extends StudentGrade{
     public static void header() {
         System.out.println("*******************************************************\n" +
-                "Names: Divija Bhargava and Viduni Weihena Epa.\n" +
+                "Names: Divija and Viduni.\n" +
                 "Student Numbers: 251159008 and 251152022\n" +
                 "Goal of this project: Create a StudentClass type class and sort a list populated with " +
                 "certain student and their corresponding grades based on either their " +
@@ -28,7 +26,7 @@ public class ViduniDivija_SortNameAndGrade extends StudentGrade{
         //call your header method
         header();
 
-        // given arrays
+        //declare given arrays
         String[] fnArray = {"Hermione", "Ron", "Harry", "Luna", "Ginny", "Draco", "Dean", "Fred"};
         String[] lnArray = {"Granger", "Weasley", "Potter", "Lovegood", "Weasley", "Malfoy", "Thomas", "Weasley"};
         Integer[] grd = {(int) (60 + Math.random() * 26), (int) (60 +
@@ -47,7 +45,7 @@ public class ViduniDivija_SortNameAndGrade extends StudentGrade{
         }
 
         //print the unsorted sg contents just by using toString() method (see the sample output)
-        System.out.println("\n\nThe Unsorted Array: ");
+        System.out.println("\nThe Unsorted Array: ");
         for (int i = 0; i < sg.size(); i++) {
             System.out.println(sg.elementAt(i).toString());
         }
@@ -56,7 +54,7 @@ public class ViduniDivija_SortNameAndGrade extends StudentGrade{
         Collections.sort(sg);
 
         //print the sorted content by using toString() method (see the sample output)
-        System.out.println("\nThe array sorted by grades: ");
+        System.out.println("\nSorted by grades: ");
         for (int i = 0; i < sg.size(); i++) {
             System.out.println(sg.elementAt(i).toString());
         }
@@ -67,10 +65,11 @@ public class ViduniDivija_SortNameAndGrade extends StudentGrade{
         //with the help of Vectors copyInto() method, copy sg to StudentGrade array you just created above
         sg.copyInto(sgArray);
 
+        //sort sg using insertion sort
         insertionSort(sgArray, 1);
 
         //print the sorted array (see the sample output)
-        System.out.println("\nThe array sorted by first names: ");
+        System.out.println("\nSorted by first names: ");
         for (int i = 0; i < sgArray.length; i++) {
             System.out.println(sgArray[i].toString());
         }
@@ -79,7 +78,7 @@ public class ViduniDivija_SortNameAndGrade extends StudentGrade{
         insertionSort(sgArray, 2);
 
         //print the sorted array (see the sample output)
-        System.out.println("\nThe array sorted by last names: ");
+        System.out.println("\nSorted by last names: ");
         for (int i = 0; i < sgArray.length; i++) {
             System.out.println(sgArray[i].toString());
         }
@@ -91,38 +90,31 @@ public class ViduniDivija_SortNameAndGrade extends StudentGrade{
 
 
     // insertion sort that will accept a StudentGrade array and an integer key
-//    The key in the method header will decide whether you would like to
-//    sort the StudentGrade array according to the first name (key = 1) or the last name (key = 2). Once
-//    done, come back to this place inside the driver and call your sort method with the argument of
-//    StudentGrade array (you created above) and key = 1 (first names).
+    // The key in the method header will decide whether you would like to
+    // sort the StudentGrade array according to the first name (key = 1) or the last name (key = 2). Once
+    // done, come back to this place inside the driver and call your sort method with the argument of
+    // StudentGrade array (you created above) and key = 1 (first names).
 
     public static  < T extends Comparable <? super T >> void insertionSort(StudentGrade[] a, Integer key){
-
         if(key.equals(1)) {
             for (int i = 0; i < a.length; i++) {
-
                 while((i>0) && a[i-1].getFirstName().compareTo(a[i].getFirstName())>0){
                     StudentGrade temp = a[i];
                     a[i] = a[i-1];
                     a[i-1] = temp;
                     i--;
                 }
-
-                }
-
+            }
         }
         else if (key.equals(2)){
             for (int i = 0; i < a.length; i++) {
-
                 while((i>0) && a[i-1].getLastName().compareTo(a[i].getLastName())>0){
                     StudentGrade temp = a[i];
                     a[i] = a[i-1];
                     a[i-1] = temp;
                     i--;
                 }
-
-                }
             }
-
+        }
     }
 }
