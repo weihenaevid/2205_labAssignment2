@@ -1,13 +1,11 @@
 package LA2Q1;
 
-import LA2Q2.StudentGrade;
-
 import java.util.*;
 
 public class ViduniDivijaTestingSortingMethods {
     public static void header(){
         System.out.println("*******************************************************\n" +
-                "Names: Divija Bhargava and Viduni Weihena Epa.\n" +
+                "Names: Divija and Viduni.\n" +
                 "Student Numbers: 251159008 and 251152022\n" +
                 "Goal of this project: To write all the sorting methods we have learned and " +
                 "test their execution time for an Integer type dataset.\n" +
@@ -74,30 +72,30 @@ public class ViduniDivijaTestingSortingMethods {
 
     public static <T extends Comparable<? super T>> long mergeSort(T[] S, Comparator<T> comp){
         long startMerge = System.nanoTime();
-            int n = S.length;
-            if (n < 2) return n; // array is trivially sorted
-            // divide
-            int mid = n/2;
-            T[] S1 = Arrays.copyOfRange(S, 0, mid); // copy of first half
-            T[] S2 = Arrays.copyOfRange(S, mid, n); // copy of second half
-            // conquer (with recursion)
-            mergeSort(S1, comp); // sort copy of first half
-            mergeSort(S2, comp); // sort copy of second half
-            // merge sorted halves back into original
-            int i = 0, j = 0;
-            while (i + j < S.length) {
-                if (j == S2.length || (i < S1.length && comp.compare(S1[i], S2[j]) < 0))
-                    S[i+j] = S1[i++]; // copy ith element of S1 and increment i
+        int n = S.length;
+        if (n < 2) return n; // array is trivially sorted
+        // divide
+        int mid = n/2;
+        T[] S1 = Arrays.copyOfRange(S, 0, mid); // copy of first half
+        T[] S2 = Arrays.copyOfRange(S, mid, n); // copy of second half
+        // conquer (with recursion)
+        mergeSort(S1, comp); // sort copy of first half
+        mergeSort(S2, comp); // sort copy of second half
+        // merge sorted halves back into original
+        int i = 0, j = 0;
+        while (i + j < S.length) {
+            if (j == S2.length || (i < S1.length && comp.compare(S1[i], S2[j]) < 0))
+                S[i+j] = S1[i++]; // copy ith element of S1 and increment i
             else
                 S[i+j] = S2[j++]; // copy jth element of S2 and increment j
-            }
+        }
         long totalTime = (System.nanoTime() - startMerge)/1000000;
         return totalTime;
 
     }
     //[you can tweak the recursive merge-sort code given in the Unit 4 – companion document]
 
-        public static <T extends Comparable<? super T>> long quickSort(T[] s, int a, int b){
+    public static <T extends Comparable<? super T>> long quickSort(T[] s, int a, int b){
         long startQuick = System.nanoTime();
         // in-place partitioning using quicksort
         if (a>=b) {
@@ -153,11 +151,12 @@ public class ViduniDivijaTestingSortingMethods {
         }
 
         //Copy the content of the first array to the backup array (You can use System.arraycopy() method).
-        System.arraycopy(firstArr, 0, backupArr, 1, arrayLastIndexNum-1);
+        System.arraycopy(firstArr, 0, backupArr, 0, arrayLastIndexNum);
 
         //Convert the first array to an ArrayList and then sort it using Collections’ sort method. Check the time and print it on the screen (see the sample output).
         List<Integer> firstList = new ArrayList<Integer>(Arrays.asList(firstArr));
         long startCollections = System.nanoTime();
+        // sort using Collections.sort
         Collections.sort(firstList);
         long totalCollectTime = (System.nanoTime() - startCollections)/1000000;
 
@@ -168,13 +167,14 @@ public class ViduniDivijaTestingSortingMethods {
         backupArr = temp;
 
         System.out.println("Testing execution time of different sorting algorithms for sorting 50000 random numbers:");
-        //Call the selectionSort() method by passing the first array, and print the time.
-       System.out.println("Collections' sort time is: " + totalCollectTime + " milliseconds");
-       System.out.println("My Selection-sort time is: " + selectionSort(backupArr)+ " milliseconds");
-       System.out.println("My Bubble-Sort sort time is: " + bubbleSort(backupArr)+ " milliseconds");
-       System.out.println("My Insertion-sort time is: " + insertionSort(backupArr)+ " milliseconds");
-       System.out.println("My Merge-sort time is: " + mergeSort(backupArr, Integer::compareTo)+ " milliseconds");
-       System.out.println("My Quick-sort time is: " + quickSort(backupArr, 0, backupArr.length-1)+ " milliseconds");
+        //Call the sorting methods by passing the first array, and print the time.
+        System.out.println("Collections' sort time is: " + totalCollectTime + " milliseconds");
+        System.out.println("My Selection-sort time is: " + selectionSort(firstArr)+ " milliseconds");
+        System.out.println("My Bubble-Sort sort time is: " + bubbleSort(firstArr)+ " milliseconds");
+        System.out.println("My Insertion-sort time is: " + insertionSort(firstArr)+ " milliseconds");
+        System.out.println("My Merge-sort time is: " + mergeSort(firstArr, Integer::compareTo)+ " milliseconds");
+        System.out.println("My Quick-sort time is: " + quickSort(firstArr, 0, firstArr.length-1)+ " milliseconds");
+
         //Call your footer method.
         footer();
 
